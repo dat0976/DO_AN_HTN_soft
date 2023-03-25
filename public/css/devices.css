@@ -1,0 +1,23 @@
+.icon-3{color: rgb(0, 204, 255);}
+.nav-bar ul li::before{
+    content: '';
+    position: absolute;
+    top: 270px;
+    right:0;
+    width: 50px;
+    height: 50px;
+    border-bottom-right-radius: 50px;
+    border-top-left-radius: 50px;
+    box-shadow: 10px 10px 0 6px #f7f7f7;
+}
+.nav-bar ul li::after{
+    content: '';
+    position: absolute;
+    top: 370px;
+    right:0;
+    width: 50px;
+    height: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+    box-shadow: 10px -10px 0 6px #f7f7f7;
+}
