@@ -7,19 +7,19 @@ app.set('views','./views');
 app.use('/public', express.static('public'));
 //chạy file liem.ejs
 app.get("/",function(req,res){
-    res.render("dashboard")
+    res.render("dashboard");
 });
-app.get("/",function(req,res){
-    res.render("room")
+app.get("/room",function(req,res){
+    res.render("room");
 });
-app.get("/",function(req,res){
-    res.render("devices")
+app.get("/devices",function(req,res){
+    res.render("devices");
 });
-app.get("/",function(req,res){
-    res.render("security")
+app.get("/security",function(req,res){
+    res.render("security");
 });
-app.get("/",function(req,res){
-    res.render("statistics")
+app.get("/statistics",function(req,res){
+    res.render("statistics");
 });
 ///*
 //tạo bảng dữ liệu cảm biến và nút nhấn ---start-----------------------
@@ -78,17 +78,17 @@ server.listen(8888);
 //nhận tín hiệu từ MQTT
 client.on("message",function(topic,message,h){
     const data     = JSON.parse(message)
-    var button_1    = data.state_1            
-    var button_2    = data.state_2
-    var button_3    = data.state_3
-    var button_auto = data.state_4
+    var state_1    = data.state_1            
+    var state_2    = data.state_2
+    var state_3    = data.state_3
+    var state_auto = data.state_4
 
-    var temp_data1  = data.temperature1.toFixed(2)
-    var humi_data1  = data.humidity1.toFixed(2)
-    var temp_data2  = data.temperature2.toFixed(2)
-    var humi_data2  = data.humidity2.toFixed(2)
+    var temp_data1  = data.temperature1//.toFixed(2)
+    var humi_data1  = data.humidity1//.toFixed(2)
+    var temp_data2  = data.temperature2//.toFixed(2)
+    var humi_data2  = data.humidity2//.toFixed(2)
     // var gas_data   = data.gas.toFixed(2)
-    // var light_data1 = data.light1.toFixed(2)
+    var light_data1 = data.light
     // var light_data2 = data.light2.toFixed(2)
     // var lightx_data = Math.abs(4395-light_data);
     var sql = "insert into sensor_tt(nhiet_do1,do_am1,nhiet_do2,do_am2) value ( "+temp_data1+" , "+humi_data1+" ,"+temp_data2+","+humi_data2+")"
@@ -99,14 +99,14 @@ client.on("message",function(topic,message,h){
     //truyền data lên web(js)
     io.emit("temp_1",temp_data1)//truyền (topic,data)
     io.emit("humi_1",humi_data1)
-    //io.emit("light_1",light_data1)
+    io.emit("light_1",light_data1)
     io.emit("temp_2",temp_data2)//truyền (topic,data)
     io.emit("humi_2",humi_data2)
-   // io.emit("light_1",light_data2)
-    io.emit("relay_1",button_1)
-    io.emit("relay_2",button_2)
-    io.emit("relay_3",button_3)
-    io.emit("relay_auto",button_auto)
+   // io.emit("light_2",light_data2)
+    io.emit("relay_1",state_1)
+    io.emit("relay_2",state_2)
+    io.emit("relay_3",state_3)
+    io.emit("relay_auto",state_auto)
 });
 
 // io.on("connection",function(socket){//lắng nghe sự kiện 

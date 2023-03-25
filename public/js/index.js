@@ -1,3 +1,4 @@
+
 const menu = document.querySelector('.menu')
 const navbar = document.querySelector('.nav-bar')
 const left = document.querySelector('.the-left')
@@ -25,7 +26,6 @@ var light2 = 0;
 
 socket.on("temp_1",function(data_received){
     temp1 = data_received;
-    x1=data_received;
     document.getElementById("temp-1").innerHTML = temp1 + "°C";
 })
 socket.on("humi_1",function(data_received){
@@ -34,6 +34,7 @@ socket.on("humi_1",function(data_received){
 })
 socket.on("light_1",function(data_received){
     light1 = data_received;
+    x1 = light1;
     document.getElementById("light-1").innerHTML = light1 +"lux";
 })
 socket.on("temp_2",function(data_received){
@@ -61,12 +62,10 @@ socket.on("relay_1",function(data_received){
     ttd1=data_received;
     if(data_received == 1){
         document.getElementById("check").checked =true
-        document.getElementById('e3').classList.add('ic9');
-        document.getElementById('e1').classList.add('ic9');
+        document.getElementById('e1').classList.add('ic-light');
     }else{
         document.getElementById("check").checked = false
-        document.getElementById('e1').classList.remove('ic9');
-        document.getElementById('e3').classList.remove('ic9');
+        document.getElementById('e1').classList.remove('ic-light');
     };
 })
 let checkbox=document.getElementById('check');
@@ -88,12 +87,10 @@ socket.on("relay_2",function(data_received){
     ttd2=data_received;
     if(data_received == 1){
         document.getElementById("check1").checked =true
-        document.getElementById('e4').classList.add('i2');
-        document.getElementById('e2').classList.add('ic');
+        document.getElementById('e2').classList.add('ic-light');
     }else{
         document.getElementById("check1").checked = false
-        document.getElementById('e4').classList.remove('i2');
-        document.getElementById('e2').classList.remove('ic');
+        document.getElementById('e2').classList.remove('ic-light');
     }
 })
 let checkbox1=document.getElementById('check1');
@@ -115,12 +112,10 @@ socket.on("relay_3",function(data_received){
     ttd3=data_received;
     if(data_received == 1){
         document.getElementById("check2").checked =true
-        document.getElementById('e4').classList.add('i2');
-        document.getElementById('e2').classList.add('ic');
+        document.getElementById('e3').classList.add('icon-1');
     }else{
         document.getElementById("check2").checked = false
-        document.getElementById('e4').classList.remove('i2');
-        document.getElementById('e2').classList.remove('ic');
+        document.getElementById('e3').classList.remove('icon-1');
     }
 })
 let checkbox2=document.getElementById('check2');
@@ -136,9 +131,9 @@ checkbox2.addEventListener('click', function(){
         socket.emit("control_relay_3","0")
     }}  
 );
-var x1=temp1.toFixed(0)
+
 var xValues = ["temp-1", "humidity-1", "temp-2", "humidity-2", "Argentina"];
-var yValues = [60, humi1, temp2, humi2,0];
+
 var barColors = ["red", "green","blue","orange","brown"];
 
 new Chart("myChart", {
@@ -147,7 +142,7 @@ new Chart("myChart", {
     labels: xValues,
     datasets: [{
       backgroundColor: barColors,
-      data: yValues
+      data: [x1, 50, 50, 20, x1],
     }]
   },
   options: {

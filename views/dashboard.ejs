@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../public/css/db.css">
     <link rel="stylesheet" href="../chart/chart-quan.css">
     <link rel="icon" href="../public/img/3.png" type="image/x-icon">
-    <title>IOT &#128151; ʕ´•ᴥ•`ʔ</title>
+    <title>IOT &#128405; ʕ´•ᴥ•`ʔ</title>
     <script src="http://localhost:3002/socket.io/socket.io.js"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
@@ -26,31 +26,31 @@
                         <ul class="nav-items">
                             <div class="menu"><i id="" class="fa-solid fa-house-laptop ic1"></i></div>
                             <li>
-                                <a id="abc" href="./dashboard.ejs">
+                                <a id="abc" href="./">
                                     <span class="icon2 icon-1"><i class="ri-dashboard-fill"></i></span>
                                     <span class="sidebar--item" style="color: black;">Dashboard</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="./room.ejs">
+                                <a href="./room">
                                     <span class="icon2 icon-2"><i class="ri-home-4-fill"></i></span>
                                     <span class="sidebar--item">Rooms</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="./devices.ejs">
+                                <a href="./devices">
                                     <span class="icon2 icon-3"><i class="ri-device-fill"></i></span>
                                     <span class="sidebar--item">Devices</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="./security.ejs">
+                                <a href="./security">
                                     <span class="icon2 icon-4"><i class="ri-shield-keyhole-fill"></i></span>
                                     <span class="sidebar--item">Security</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="./statistics.ejs">
+                                <a href="./statistics">
                                     <span class="icon2 icon-5"><i class="ri-bar-chart-box-fill"></i></span>
                                     <span class="sidebar--item">Statistics</span>
                                 </a>
@@ -160,13 +160,13 @@
                                             <p>Lamp 2:</p>
                                             <div id="switch">
                                                 <div><input type="checkbox" class="switch-toggle" id="check1"></div>
-                                                <div id="e1"><i id="li" class="far fa-lightbulb icbt"></i></div>
+                                                <div id="e2"><i id="li" class="far fa-lightbulb icbt"></i></div>
                                             </div>
                                         </div>
                                         <div class="bt">
                                             <p>Fan:</p>
                                             <div id="switch">
-                                                <div id="e2"><i id="li" class="fa-sharp fa-solid fa-power-off icbt2"></i></div>
+                                                <div id="e3"><i id="li" class="fa-sharp fa-solid fa-power-off icbt2"></i></div>
                                                 <div><input type="checkbox" class="switch-toggle" id="check2"></div>
                                             </div>
                                         </div>
@@ -176,7 +176,7 @@
                             <div class="col ptm3">
                                 <div class="ptc4">
                                     <p>Chart</p>
-                                    <div class="ptcc"><canvas id="myChart" style="width:70%;height: 8cm;"></canvas></div>
+                                    <div class="ptcc"><canvas id="myChart" style="max-width:1100px;"></canvas></div>
                                 </div>
                             </div>
                         </div>
