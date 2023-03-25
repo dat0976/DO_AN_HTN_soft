@@ -28,7 +28,7 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "ok123"
+  database: "liem"
 });
 con.connect(function(err) {
   if (err) throw err;
@@ -78,9 +78,10 @@ server.listen(8888);
 //nhận tín hiệu từ MQTT
 client.on("message",function(topic,message,h){
     const data     = JSON.parse(message)
-    var tt_nut1    = data.TTnut1             
-    var tt_nut2    = data.TTnut2
-    var tt_nut3    = data.TTnut3
+    var button_1    = data.state_1            
+    var button_2    = data.state_2
+    var button_3    = data.state_3
+    var button_auto = data.state_4
 
     var temp_data1  = data.temperature1.toFixed(2)
     var humi_data1  = data.humidity1.toFixed(2)
@@ -102,9 +103,10 @@ client.on("message",function(topic,message,h){
     io.emit("temp_2",temp_data2)//truyền (topic,data)
     io.emit("humi_2",humi_data2)
    // io.emit("light_1",light_data2)
-    io.emit("relay_1",tt_nut1)
-    io.emit("relay_2",tt_nut2)
-    io.emit("relay_3",tt_nut3)
+    io.emit("relay_1",button_1)
+    io.emit("relay_2",button_2)
+    io.emit("relay_3",button_3)
+    io.emit("relay_auto",button_auto)
 });
 
 // io.on("connection",function(socket){//lắng nghe sự kiện 
@@ -154,12 +156,12 @@ io.on("connection",function(socket){
   socket.on("control_relay_1",function(state){// nhận 
     if(state == 0){
       //truyền tín hiệu xuống mqtt
-      client.publish("anh_sang","0")
+      client.publish("relay_1","0")
       //truyền data vào sql
       con.query("insert into button_tt(nut_id, status) value ( '1' , '0') " )
     }else{
       //truyền tín hiệu xuống mqtt
-      client.publish("anh_sang","1")
+      client.publish("relay_1","1")
       //truyền data vào sql
       con.query("insert into button_tt(nut_id, status) value ( '1' , '1') " )
     }
@@ -167,12 +169,12 @@ io.on("connection",function(socket){
   socket.on("control_relay_2",function(state2){
     if(state2 == 0){
       //truyền tín hiệu xuống mqtt
-      client.publish("dien_lanh","0")
+      client.publish("relay_2","0")
       //truyền data vào sql
       con.query("insert into button_tt(nut_id, status) value ( '2' , '0') ")
     }else{
       //truyền tín hiệu xuống mqtt
-      client.publish("dien_lanh","1")
+      client.publish("relay_2","1")
       //truyền data vào sql
       con.query("insert into button_tt(nut_id, status) value ( '2' , '1') ")
     }
@@ -180,12 +182,25 @@ io.on("connection",function(socket){
   socket.on("control_relay_3",function(state3){
     if(state3 == 0){
       //truyền tín hiệu xuống mqtt
-      client.publish("am_thanh","0")
+      client.publish("relay_3","0")
       //truyền data vào sql
       con.query("insert into button_tt(nut_id, status) value ( '3' , '0') " )
     }else{
       //truyền tín hiệu xuống mqtt
-      client.publish("am_thanh","1")
+      client.publish("relay_3","1")
+      //truyền data vào sql
+      con.query("insert into button_tt(nut_id, status) value ( '3' , '1') " )
+    }
+  })
+  socket.on("control_relay_4",function(state4){
+    if(state4 == 0){
+      //truyền tín hiệu xuống mqtt
+      client.publish("relay_4","0")
+      //truyền data vào sql
+      con.query("insert into button_tt(nut_id, status) value ( '3' , '0') " )
+    }else{
+      //truyền tín hiệu xuống mqtt
+      client.publish("relay_4","1")
       //truyền data vào sql
       con.query("insert into button_tt(nut_id, status) value ( '3' , '1') " )
     }

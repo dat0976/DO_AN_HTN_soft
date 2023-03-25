@@ -136,9 +136,9 @@ checkbox2.addEventListener('click', function(){
         socket.emit("control_relay_3","0")
     }}  
 );
-
+var x1=temp1.toFixed(0)
 var xValues = ["temp-1", "humidity-1", "temp-2", "humidity-2", "Argentina"];
-var yValues = [x1, humi1, temp2, humi2,0];
+var yValues = [60, humi1, temp2, humi2,0];
 var barColors = ["red", "green","blue","orange","brown"];
 
 new Chart("myChart", {

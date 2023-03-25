@@ -106,7 +106,6 @@
 }
 .ptc4{
     background-color:#fff;
-    height: 370px;
     margin: 0px 0px 0px 0px;
     padding: 30px 30px 30px 30px;
     border-radius: 50px;
@@ -227,6 +226,10 @@
     margin: -20px 0px 0px 0px;
     /* justify-content: center; */
 }
+.ptcc{
+    display: flex;
+    justify-content: center;
+}
 @media screen and (max-width:1620px) {
     .mg1{
         width: 75%;
@@ -256,6 +259,9 @@
     }
     .val-size{
         font-size:15px;
+    }
+    .ptcc{
+        width: 80%;
     }
 }
 @media screen and (max-width:1124px) {
@@ -287,6 +293,9 @@
     }
     .val-size{
         font-size:large;
+    }
+    .ptcc{
+        max-width: 70%;
     }
 }
 @media screen and (max-width:991px) {
