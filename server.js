@@ -21,6 +21,9 @@ app.get("/security",function(req,res){
 app.get("/statistics",function(req,res){
     res.render("statistics");
 });
+app.get("/logout",function(req,res){
+  res.render("logout");
+});
 ///*
 //tạo bảng dữ liệu cảm biến và nút nhấn ---start-----------------------
 var mysql = require('mysql');
@@ -63,7 +66,12 @@ con.connect(function(err) {
 //tạo bảng dữ liệu cảm biến và nút nhấn ---end-------------------------
 //kết nối MQTT
 var mqtt = require("mqtt");
-var client = mqtt.connect('mqtt://192.168.1.149');
+
+
+// var client = mqtt.connect('mqtt://192.168.1.149');
+
+var client = mqtt.connect('mqtt:net-radio.vov.link');
+// var client = mqtt.connect('mqtt://192.168.31.202');
 
 // Kiem tra ket noi với MQTT
 client.on("connect",function(){
@@ -73,7 +81,7 @@ client.on("connect",function(){
 /////////////////////--------------
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
-server.listen(8888);
+server.listen(3003);
 
 //nhận tín hiệu từ MQTT
 client.on("message",function(topic,message,h){
@@ -81,15 +89,15 @@ client.on("message",function(topic,message,h){
     var state_1    = data.state_1            
     var state_2    = data.state_2
     var state_3    = data.state_3
-    var state_auto = data.state_4
+    var state_4    = data.state_4
 
     var temp_data1  = data.temperature1.toFixed(2)
     var humi_data1  = data.humidity1.toFixed(2)
     var temp_data2  = data.temperature2.toFixed(2)
     var humi_data2  = data.humidity2.toFixed(2)
     // var gas_data   = data.gas.toFixed(2)
-    var light_data1 = data.light
-    // var light_data2 = data.light2.toFixed(2)
+    var light_data1 = data.light1
+    var light_data2 = data.light2
     // var lightx_data = Math.abs(4395-light_data);
     var sql = "insert into sensor_tt(nhiet_do1,do_am1,nhiet_do2,do_am2) value ( "+temp_data1+" , "+humi_data1+" ,"+temp_data2+","+humi_data2+")"
     con.query(sql,function(err,result){
@@ -102,11 +110,11 @@ client.on("message",function(topic,message,h){
     io.emit("light_1",light_data1)
     io.emit("temp_2",temp_data2)//truyền (topic,data)
     io.emit("humi_2",humi_data2)
-   // io.emit("light_2",light_data2)
+    io.emit("light_2",light_data2)
     io.emit("relay_1",state_1)
     io.emit("relay_2",state_2)
     io.emit("relay_3",state_3)
-    io.emit("relay_auto",state_auto)
+    io.emit("relay_auto",state_4)
 });
 
 // io.on("connection",function(socket){//lắng nghe sự kiện 
@@ -179,12 +187,12 @@ io.on("connection",function(socket){
       //truyền tín hiệu xuống mqtt
       client.publish("relay_4","0")
       //truyền data vào sql
-      con.query("insert into button_tt(nut_id, status) value ( '3' , '0') " )
+      //con.query("insert into button_tt(nut_id, status) value ( '3' , '0') " )
     }else{
       //truyền tín hiệu xuống mqtt
       client.publish("relay_4","1")
       //truyền data vào sql
-      con.query("insert into button_tt(nut_id, status) value ( '3' , '1') " )
+      // con.query("insert into button_tt(nut_id, status) value ( '3' , '1') " )
     }
   })
 });
