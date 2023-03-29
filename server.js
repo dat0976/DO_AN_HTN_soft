@@ -28,7 +28,7 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "liem"
+  database: "database"
 });
 con.connect(function(err) {
   if (err) throw err;
@@ -63,7 +63,7 @@ con.connect(function(err) {
 //tạo bảng dữ liệu cảm biến và nút nhấn ---end-------------------------
 //kết nối MQTT
 var mqtt = require("mqtt");
-var client = mqtt.connect('mqtt:net-radio.vov.link');
+var client = mqtt.connect('mqtt://192.168.1.149');
 
 // Kiem tra ket noi với MQTT
 client.on("connect",function(){
@@ -83,10 +83,10 @@ client.on("message",function(topic,message,h){
     var state_3    = data.state_3
     var state_auto = data.state_4
 
-    var temp_data1  = data.temperature1//.toFixed(2)
-    var humi_data1  = data.humidity1//.toFixed(2)
-    var temp_data2  = data.temperature2//.toFixed(2)
-    var humi_data2  = data.humidity2//.toFixed(2)
+    var temp_data1  = data.temperature1.toFixed(2)
+    var humi_data1  = data.humidity1.toFixed(2)
+    var temp_data2  = data.temperature2.toFixed(2)
+    var humi_data2  = data.humidity2.toFixed(2)
     // var gas_data   = data.gas.toFixed(2)
     var light_data1 = data.light
     // var light_data2 = data.light2.toFixed(2)
@@ -131,24 +131,6 @@ client.on("message",function(topic,message,h){
 //         }
 //     })
 // })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //nhận tín hiệu nút nhấn từ web
 io.on("connection",function(socket){
