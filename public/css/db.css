@@ -9,7 +9,6 @@
     border-bottom-right-radius: 50px;
     border-top-left-radius: 50px;
     box-shadow: 10px 10px 0 6px #f7f7f7;
-    
 }
 .nav-bar ul li::after{
     content: '';
@@ -61,6 +60,14 @@
     box-shadow: 5px 5px 5px rgba(54, 52, 54, 0.315);
 }
 .ptc2{
+    background-color: #ffffff;
+    height: 170px;
+    margin: 0px 15px 30px 15px;
+    padding: 15px 15px 15px 15px;
+    border-radius: 50px;
+    box-shadow: 5px 5px 5px rgba(54, 52, 54, 0.315);
+}
+.ptc2-1{
     background-color: #fff;
     height: 170px;
     margin: 0px 15px 30px 15px;
@@ -93,6 +100,7 @@
 }
 .bt{
     height: 33%;
+    position: relative;
 }
 .icbt{
     font-size: 40px;
@@ -106,7 +114,6 @@
 }
 .ptc4{
     background-color:#fff;
-    height: 370px;
     margin: 0px 0px 0px 0px;
     padding: 30px 30px 30px 30px;
     border-radius: 50px;
@@ -148,39 +155,50 @@
     border-radius: 60px;
     box-shadow: 0px 0px 5px rgba(54, 52, 54, 0.315);
 }
-/* .water{
-    position: relative;
-    width: 260px;
-    height: 260px;
-    margin: 30px 0px 0px 90px;
-    border-radius: 43% 57% 30% 70% / 52% 30% 70% 48%;
-    box-shadow: inset 10px 10px 10px #e100ff0c, 15px 25px 10px #00000019,inset -10px -10px 15px #ffffffe5;
-    transition: 7s;
+.ptc6-1{
+    margin: 0px 0px 0px 0px;
+    height: 50%;
 }
-.water.active{
-    position: relative;
-    width: 250px;
-    height: 250px;
-    margin: 40px 0px 0px 60px;
-    border-radius: 50% 50% 50% 50% / 62% 50% 30% 38%;
-    box-shadow: inset 10px 10px 10px #0000000c, 15px 25px 10px #00000019,inset -10px -10px 15px #ffffffe5;
-    transition: 7s;
+.ptc6-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.water::before, .water::after{
+.checki{
+    background-color: #5d636b;
+    border-radius: 50px;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+.checkic{
+    position:relative;
+    background-color: #38202000;
+    width: 60px;
+    height: 60px;
+    appearance: none;
+    cursor: pointer;
+}
+#checkauto{
+    transition: 3s;
+}
+.autobr{
+    box-shadow: inset 0px 0px 30px red;
+    background-color: #ffffff;
+    transition: 3s;
+}
+.icpropw{
+    font-size: 60px;
     position: absolute;
-    background-color: #fff;
-    content: '';
-    border-radius: 65% 35% 53% 47% / 64% 65% 35% 36%;
-    width: 20px;
-    height: 20px;
-    top: 50px;
-    left: 50px;
+    margin: -30px 0px 0px 0px;
 }
-.water::after{
-    transform: translate(18px, -25px)
-                scale(0.7)
-                rotate(20deg);
-} */
+.icprohp{
+    font-size: 60px;
+    cursor: pointer;
+}
+
 .mes{
     color: #586c8a;
     overflow: hidden;
@@ -227,6 +245,57 @@
     margin: -20px 0px 0px 0px;
     /* justify-content: center; */
 }
+.ptcc{
+    height: 16cm;
+    margin:0px 0px 10px 0px;
+}
+.chart-quan{
+    max-width: 318px;
+    width: 80%; 
+    margin: -25px 0px 0px 0px;
+}
+.quan{
+    display: flex;
+}
+.auto{
+    display: none;
+    position: absolute;
+    content: "";
+    width: 50%;
+    height: 370px;
+    top:0px;
+    right: 0px;
+    z-index: 1;
+}
+.clock{
+    position: absolute;
+    display: none;
+    background-color: #000;
+    width: 1930px;
+    height:1500px;
+    z-index: 5;
+}
+.clx{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ucl{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    width: 200px;
+    height: 200px;
+    border-radius: 60px 60px 60px 60px;
+    box-shadow: inset 0px 0px 30px red;
+    background-color: #fff;
+    cursor: pointer;
+    z-index: 6;
+}
+.tive{
+    display: block;
+}
 @media screen and (max-width:1620px) {
     .mg1{
         width: 75%;
@@ -235,9 +304,6 @@
     .mg2{
         margin-top: 0px ;
         
-    }
-    .water{
-        display: none;
     }
     .mg1.active{
         width: 100%;
@@ -257,28 +323,31 @@
     .val-size{
         font-size:15px;
     }
+    .val-light{
+        font-size: 15px;
+        margin: -10px 0px 0px 0px;
+    }
+
+    .ptcc{
+        width: 90%;
+        max-width: 800px;
+        height: 450px;
+    }
+    .chart-quan{
+        max-width: 350px;
+    }
 }
-@media screen and (max-width:1124px) {
-    .nav-bar.active{
-        width: 100px;
-        display: flex;
-        align-content: flex-end; 
+@media screen and (max-width:1400px) {
+    .ptcc{
+        width: 90%;
+        max-width: 720px;
+        height: 350px;
     }
-    .nav-bar.active .sidebar--item{
-        display: none;
+    .ptc6{
+        height: 370px;
     }
-    .nav-bar.active .ic1{
-        margin: 30px 0px 100px 0px;
-    }
-    .nav-bar.active .nav-items a{
-        padding: 10px 10px 10px 0px;
-        margin: 0px 0px 10px 10px;
-        transition: .5s;
-    }
-    .the-left.active{
-        width: 130px;
-    }
-    
+}
+@media screen and (max-width:1130px) {
     .mg2{
         display: none;
     }
@@ -288,16 +357,25 @@
     .val-size{
         font-size:large;
     }
+    .ptcc{
+        max-width: 700px;
+    }
 }
 @media screen and (max-width:991px) {
     .ptc3{
         margin: -15px 15px 30px 15px ;
     }
     .ptcc{
-        display: none;
+        max-width: 550px;
     }
     .val-size{
         font-size:xx-large;
+    }
+    .val-light{
+        font-size:xx-large;
+    }
+    .chart-quan{
+        max-width: 330px;
     }
 }
 @media screen and (max-width:767px) {
@@ -318,7 +396,15 @@
     .ic-light{
         display: none;
     }
-    
+    .ptc4{
+        display: none;
+    }
+    .ptc2{
+        display: none;
+    }
+    .chart-quan{
+        max-width: 259px;
+    }
     
 }
 @media screen and (max-width:575px) {
@@ -328,13 +414,29 @@
     .ptc3::before{
         display: none;
     }
-    .val-light{
-        margin: 0px;
+    .ptlm{
+        width: 90%;
     }
-    .mes{
-        display:none ;
+    .btm{
+        display: none;
+    }
+    .val-light{
+        font-size: x-large;
+    }
+    .ic-light{
+        display: flex;
     }
     .val-size{
-        font-size:large;
+        font-size:x-large;
+    }
+    .ptc4{
+        display: none;
+    }
+    .ptc3{
+        margin-top: -30px;
+        height: auto;
+    }
+    .chart-quan{
+        max-width: 320px;
     }
 }

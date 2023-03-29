@@ -7,19 +7,22 @@ app.set('views','./views');
 app.use('/public', express.static('public'));
 //chạy file liem.ejs
 app.get("/",function(req,res){
-    res.render("dashboard")
+    res.render("dashboard");
 });
-app.get("/",function(req,res){
-    res.render("room")
+app.get("/room",function(req,res){
+    res.render("room");
 });
-app.get("/",function(req,res){
-    res.render("devices")
+app.get("/devices",function(req,res){
+    res.render("devices");
 });
-app.get("/",function(req,res){
-    res.render("security")
+app.get("/security",function(req,res){
+    res.render("security");
 });
-app.get("/",function(req,res){
-    res.render("statistics")
+app.get("/statistics",function(req,res){
+    res.render("statistics");
+});
+app.get("/logout",function(req,res){
+  res.render("logout");
 });
 ///*
 //tạo bảng dữ liệu cảm biến và nút nhấn ---start-----------------------
@@ -28,7 +31,7 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "ok123"
+  database: "database"
 });
 con.connect(function(err) {
   if (err) throw err;
@@ -64,7 +67,7 @@ con.connect(function(err) {
 //kết nối MQTT
 var mqtt = require("mqtt");
 var client = mqtt.connect('mqtt:net-radio.vov.link');
-
+// var client = mqtt.connect('mqtt://192.168.31.202');
 // Kiem tra ket noi với MQTT
 client.on("connect",function(){
   console.log("mqtt connected")
@@ -73,22 +76,23 @@ client.on("connect",function(){
 /////////////////////--------------
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
-server.listen(8888);
+server.listen(3003);
 
 //nhận tín hiệu từ MQTT
 client.on("message",function(topic,message,h){
     const data     = JSON.parse(message)
-    var tt_nut1    = data.TTnut1             
-    var tt_nut2    = data.TTnut2
-    var tt_nut3    = data.TTnut3
+    var state_1    = data.state_1            
+    var state_2    = data.state_2
+    var state_3    = data.state_3
+    var state_4    = data.state_4
 
-    var temp_data1  = data.temperature1.toFixed(2)
-    var humi_data1  = data.humidity1.toFixed(2)
-    var temp_data2  = data.temperature2.toFixed(2)
-    var humi_data2  = data.humidity2.toFixed(2)
+    var temp_data1  = data.temperature1//.toFixed(2)
+    var humi_data1  = data.humidity1//.toFixed(2)
+    var temp_data2  = data.temperature2//.toFixed(2)
+    var humi_data2  = data.humidity2//.toFixed(2)
     // var gas_data   = data.gas.toFixed(2)
-    // var light_data1 = data.light1.toFixed(2)
-    // var light_data2 = data.light2.toFixed(2)
+    var light_data1 = data.light1
+    var light_data2 = data.light2
     // var lightx_data = Math.abs(4395-light_data);
     var sql = "insert into sensor_tt(nhiet_do1,do_am1,nhiet_do2,do_am2) value ( "+temp_data1+" , "+humi_data1+" ,"+temp_data2+","+humi_data2+")"
     con.query(sql,function(err,result){
@@ -98,13 +102,14 @@ client.on("message",function(topic,message,h){
     //truyền data lên web(js)
     io.emit("temp_1",temp_data1)//truyền (topic,data)
     io.emit("humi_1",humi_data1)
-    //io.emit("light_1",light_data1)
+    io.emit("light_1",light_data1)
     io.emit("temp_2",temp_data2)//truyền (topic,data)
     io.emit("humi_2",humi_data2)
-   // io.emit("light_1",light_data2)
-    io.emit("relay_1",tt_nut1)
-    io.emit("relay_2",tt_nut2)
-    io.emit("relay_3",tt_nut3)
+    io.emit("light_2",light_data2)
+    io.emit("relay_1",state_1)
+    io.emit("relay_2",state_2)
+    io.emit("relay_3",state_3)
+    io.emit("relay_auto",state_4)
 });
 
 // io.on("connection",function(socket){//lắng nghe sự kiện 
@@ -154,12 +159,12 @@ io.on("connection",function(socket){
   socket.on("control_relay_1",function(state){// nhận 
     if(state == 0){
       //truyền tín hiệu xuống mqtt
-      client.publish("anh_sang","0")
+      client.publish("relay_1","0")
       //truyền data vào sql
       con.query("insert into button_tt(nut_id, status) value ( '1' , '0') " )
     }else{
       //truyền tín hiệu xuống mqtt
-      client.publish("anh_sang","1")
+      client.publish("relay_1","1")
       //truyền data vào sql
       con.query("insert into button_tt(nut_id, status) value ( '1' , '1') " )
     }
@@ -167,12 +172,12 @@ io.on("connection",function(socket){
   socket.on("control_relay_2",function(state2){
     if(state2 == 0){
       //truyền tín hiệu xuống mqtt
-      client.publish("dien_lanh","0")
+      client.publish("relay_2","0")
       //truyền data vào sql
       con.query("insert into button_tt(nut_id, status) value ( '2' , '0') ")
     }else{
       //truyền tín hiệu xuống mqtt
-      client.publish("dien_lanh","1")
+      client.publish("relay_2","1")
       //truyền data vào sql
       con.query("insert into button_tt(nut_id, status) value ( '2' , '1') ")
     }
@@ -180,14 +185,27 @@ io.on("connection",function(socket){
   socket.on("control_relay_3",function(state3){
     if(state3 == 0){
       //truyền tín hiệu xuống mqtt
-      client.publish("am_thanh","0")
+      client.publish("relay_3","0")
       //truyền data vào sql
       con.query("insert into button_tt(nut_id, status) value ( '3' , '0') " )
     }else{
       //truyền tín hiệu xuống mqtt
-      client.publish("am_thanh","1")
+      client.publish("relay_3","1")
       //truyền data vào sql
       con.query("insert into button_tt(nut_id, status) value ( '3' , '1') " )
+    }
+  })
+  socket.on("control_relay_4",function(state4){
+    if(state4 == 0){
+      //truyền tín hiệu xuống mqtt
+      client.publish("relay_4","0")
+      //truyền data vào sql
+      //con.query("insert into button_tt(nut_id, status) value ( '3' , '0') " )
+    }else{
+      //truyền tín hiệu xuống mqtt
+      client.publish("relay_4","1")
+      //truyền data vào sql
+      // con.query("insert into button_tt(nut_id, status) value ( '3' , '1') " )
     }
   })
 });
