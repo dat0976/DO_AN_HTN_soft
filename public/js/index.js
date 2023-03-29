@@ -179,7 +179,7 @@ checkbox2.addEventListener('click',function(){
 );
 //chart1
 var xValues1 = ["INSIDE", "OUTSIDE"];
-var barColors1 = ["rgba(207, 0, 0, 0.555)", "#5d636b"];
+var barColors1 = ["rgba(207, 0, 0, 0.555)", "#586c8a86"];
 setInterval(function(){
   new Chart("myChart1", {
     type: "horizontalBar",
