@@ -48,3 +48,68 @@ body {
     cursor: pointer;
     float: right;
   }
+
+
+
+/* darkmode */
+  /* <div class="switch">
+  <input type="checkbox" id="toggle" name="toggle" class="toggle" />
+  <label for="toggle"></label>
+</div> */
+  body {
+    background-color: #222;
+    color: #fff;
+  }
+  
+  a {
+    color: #fff;
+  }
+  
+  button {
+    background-color: #444;
+    color: #fff;
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin: 10px;
+  }
+  
+  .switch input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .switch label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    border-radius: 20px;
+    transition: all 0.3s;
+  }
+  
+  .switch label::before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #444;
+    border-radius: 50%;
+    transition: all 0.3s;
+  }
+  
+  .switch input[type="checkbox"]:checked + label {
+    background-color: #444;
+  }
+  
+  .switch input[type="checkbox"]:checked + label::before {
+    transform: translateX(20px);
+  }

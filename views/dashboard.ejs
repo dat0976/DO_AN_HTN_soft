@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../public/css/index.css">
     <link rel="stylesheet" href="../public/css/db.css">
+    <link rel="stylesheet" href="../public/css/index.css">
     <link rel="stylesheet" href="../chart/chart-quan.css">
     <link rel="icon" href="../public/img/3.png" type="image/x-icon">
     <title>IOT &#128405; ʕ´•ᴥ•`ʔ</title>
@@ -24,14 +24,14 @@
     <div id="dm" class="LimE-container">
         <div class="row">
             <div class="col-sm-2 col-2 the-left">
-                <section class="nav-bar">
+                <section class="nav-bar df-nav">
                     <div>
                         <ul class="nav-items">
                             <div class="menu menu-small"><i class="fa-solid fa-house-laptop ic1"></i></div>
                             <li>
-                                <a id="abc" href="./">
+                                <a class="abc" href="./">
                                     <span class="icon2 icon-1"><i class="ri-dashboard-fill"></i></span>
-                                    <span class="sidebar--item" style="color: black;">Dashboard</span>
+                                    <span class="sidebar--item textnav">Dashboard</span>
                                 </a>
                             </li>
                             <li>
@@ -73,12 +73,12 @@
                 </section>
             </div>
             <div class="col the-right">
-                <a class="iot" href="./">SMART FARM</a>
+                <a class="iot darkmode" href="./">SMART FARM</a>
                 <div class="row mg">
                     <div class="col-sm-9 mg1">
                         <div class="row m1">
                             <div class="col-lg-3 col-md-6 col-sm-12 ptm1">
-                                <div class="ptc1">
+                                <div id="darkmode" class="ptc1 darkmode">
                                     <p>Temp 1:</p>
                                     <div class="row">
                                         <i class="col fas fa-temperature-low icon1 ic2 ic-temp"></i>
@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-12 ptm1">
-                                <div class="ptc1">
+                                <div id="darkmode" class="ptc1 darkmode">
                                     <p>Temp 2:</p>
                                     <div class="row">
                                         <i class="col fas fa-temperature-low icon1 ic2 ic-temp"></i>
@@ -96,7 +96,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-12 ptm1">
-                                <div class="ptc1">
+                                <div class="ptc1 darkmode">
                                     <p>Humidity 1:</p>
                                     <div class="row">
                                         <i class="col fas fa-burn icon1 ic2 ic-humi"></i>
@@ -105,7 +105,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-12 ptm1">
-                                <div class="ptc1">
+                                <div class="ptc1 darkmode">
                                     <p>Humidity 2:</p>
                                     <div class="row">
                                         <i class="col fas fa-burn icon1 ic2 ic-humi"></i>
@@ -114,17 +114,17 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12 ptm2">
-                                <div class="row ptc2-1">
+                                <div class="row ptc2-1 darkmode">
                                     <p style="margin: 0px 0px 0px 0px;">Quantity:</p>
                                     <div class="quan">
-                                        <div class="col-8"><canvas id="myChart1" class="chart-quan"></canvas></div>
+                                        <div class="col-8 chartquan"><canvas id="myChart1" class="chart-quan"></canvas></div>
                                         <div class="col-4">
                                             <p>INSIDE:</p>
                                             <div id="quantity"></div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row ptc2">
+                                <div class="row ptc2 darkmode">
                                     <p>Messenger:</p>
                                     <div id="clr" class="mes-note">
                                         <p id="m1" class="mes p1 p-o">Hello, welcome to IOT :))</p>
@@ -136,7 +136,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12 ptm2">
-                                <div class="row ptc3">
+                                <div class="row ptc3 darkmode">
                                     <div class="col-md-8 col-sm-6 ptlm">
                                         <div class="ptl">
                                             <p>Light 1:</p>
@@ -159,13 +159,13 @@
                                             <p>Lamp 1:</p>
                                             <div id="switch">
                                                 <div id="e1"><i id="li" class="far fa-lightbulb icbt"></i></div>
-                                                <div><input type="checkbox" class="switch-toggle" id="check"></div>
+                                                <div><input type="checkbox" class="switch-toggle" id="check1"></div>
                                             </div>
                                         </div>
                                         <div class="bt">
                                             <p>Lamp 2:</p>
                                             <div id="switch">
-                                                <div><input type="checkbox" class="switch-toggle" id="check1"></div>
+                                                <div><input type="checkbox" class="switch-toggle" id="check2"></div>
                                                 <div id="e2"><i id="li" class="far fa-lightbulb icbt"></i></div>
                                             </div>
                                         </div>
@@ -173,14 +173,14 @@
                                             <p>Fan:</p>
                                             <div id="switch">
                                                 <div id="e3"><i id="li" class="fa-sharp fa-solid fa-power-off icbt2"></i></div>
-                                                <div><input type="checkbox" class="switch-toggle" id="check2"></div>
+                                                <div><input type="checkbox" class="switch-toggle" id="check3"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col ptm3">
-                                <div class="ptc4">
+                                <div class="ptc4 darkmode">
                                     <p>Chart:</p>
                                     <div class="ptcc"><canvas id="myChart" style="max-width:1100px; height: 500px; z-index: 4;"></canvas></div>
                                 </div>
@@ -193,12 +193,12 @@
                                 <img class="avt" src="../public/img/3.png" alt="AVT">
                                 <p><b>WELCOME TO IOT</b></p>
                             </div>
-                            <div class="ptc6">
+                            <div class="ptc6 darkmode">
                                 <div class="row ptc6-1">
                                     <div class="col-6 ptc6-2">
                                         <div id="checkauto" class="checki">
                                             <div id="e4"><i class="fa-sharp fa-solid fa-power-off icpropw"></i></div>
-                                            <div><input type="checkbox" class="checkic" id="check3"></div>
+                                            <div><input type="checkbox" class="checkic" id="check4"></div>
                                         </div>
                                     </div>
                                     <div class="col-6 ptc6-2">
@@ -209,8 +209,9 @@
                                 </div>
                                 <div class="row ptc6-1">
                                     <div class="col-6 ptc6-2">
-                                        <div class="checki">
-                                            <i class="ri-moon-fill icprohp"></i>
+                                        <div id="DM" class="checki">
+                                            <div id="e5"><i class="ri-moon-fill icprodm"></i></div>
+                                            <div><input type="checkbox" class="checkicdm" id="check5"></div>
                                         </div>
                                     </div>
                                     <div class="col-6 ptc6-2">

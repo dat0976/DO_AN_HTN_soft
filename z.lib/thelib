@@ -169,3 +169,30 @@ li{
     }
     
 }
+//////////////////////
+
+
+
+// lime.classList.add('darksdbr','darkbr')
+// nav.classList.add('darksdnav')
+// bf.classList.add('darkbf')
+// af.classList.add('darkaf')
+// iot.classList.add('darkpt')
+// ptc1.classList.add('dark')
+// ptc2_1.classList.add('darkpt')
+
+
+// body.classList.add('darkpr')
+// const body=document.body
+// const lime=document.querySelector('.LimE-container')
+// const nav=document.querySelector('.nav-bar')
+// const bf=document.querySelector('.nav-bar ul li::before')
+// const af=document.querySelector('.nav-bar ul li::after')
+// const abc=document.getElementById('abc')
+// const iot=document.querySelector('.iot')
+// const ptc1=document.querySelector('.ptc1')
+// const ptc2_1=document.querySelector('.ptc2-1')
+// const ptc3=document.querySelector('.ptc3')  
+// const ptc4=document.querySelector('.ptc4')
+// const ptm4=document.querySelector('.ptm4')
+// const ptc6=document.querySelector('.ptc6')

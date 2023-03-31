@@ -1,5 +1,6 @@
 .icon-1{color: rgb(255, 0, 0) ;}
 .nav-bar ul li::before{
+    box-shadow: 10px 10px 0 9px #f7f7f7;
     content: '';
     position: absolute;
     top: 150px;
@@ -8,7 +9,6 @@
     height: 50px;
     border-bottom-right-radius: 50px;
     border-top-left-radius: 50px;
-    box-shadow: 10px 10px 0 6px #f7f7f7;
 }
 .nav-bar ul li::after{
     content: '';
@@ -19,7 +19,7 @@
     height: 50px;
     border-top-right-radius: 50px;
     border-bottom-left-radius: 50px;
-    box-shadow: 10px -10px 0 6px #f7f7f7;
+    box-shadow: 10px -10px 0 9px #f7f7f7;
 }
 .mg{
     margin: 0px 0px 0px 0px;
@@ -93,14 +93,40 @@
     height: 300px;
     background-color:#e6e6e6;
 }
+.ptc3::after{
+    display: none;
+    content: '';
+    position: absolute;
+    border-radius: 30px 30px 30px 30px;
+    top:5%;
+    left: 60%;
+    width: 38%;
+    height: 90%;
+    background-color:#e6e6e671;
+}
+.ptc3.active::after{
+    display: block;
+}
 .ptl{
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
     height: 50%;
 }
+.btm{
+    border-radius: 30px;
+}
+/* .btmrad{
+    box-shadow: inset 0px 0px 20px rgb(255, 0, 0);
+} */
+.btmrad1{
+    box-shadow: inset 0px 0px 20px rgb(0, 0, 0);
+}
 .bt{
     height: 33%;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .icbt{
     font-size: 40px;
@@ -182,12 +208,12 @@
     cursor: pointer;
 }
 #checkauto{
-    transition: 3s;
+    transition: 1s;
 }
 .autobr{
     box-shadow: inset 0px 0px 30px red;
     background-color: #ffffff;
-    transition: 3s;
+    transition: 1s;
 }
 .icpropw{
     font-size: 60px;
@@ -197,6 +223,19 @@
 .icprohp{
     font-size: 60px;
     cursor: pointer;
+}
+.checkicdm{
+    position:relative;
+    background-color: #38202000;
+    width: 60px;
+    height: 60px;
+    appearance: none;
+    cursor: pointer;
+}
+.icprodm{
+    font-size: 60px;
+    position: absolute;
+    margin: -45px 0px 0px 0px;
 }
 
 .mes{
@@ -233,7 +272,7 @@
     margin: -15px 0px 0px 15px;
 }
 .val-size{
-
+    color: #586c8a;
     font-size:x-large;
     margin: -20px 0px 0px 0px;
     display: flex;
@@ -241,6 +280,7 @@
     /* justify-content: center; */
 }
 .val-light{
+    color: #586c8a;
     font-size:xx-large;
     margin: -20px 0px 0px 0px;
     /* justify-content: center; */
@@ -377,6 +417,7 @@
     .chart-quan{
         max-width: 330px;
     }
+
 }
 @media screen and (max-width:767px) {
     .ptc3::before{
@@ -405,7 +446,14 @@
     .chart-quan{
         max-width: 259px;
     }
-    
+    .clock{
+    position: absolute;
+    display: none;
+    background-color: #000;
+    width: 1930px;
+    height:2000px;
+    z-index: 5;
+}
 }
 @media screen and (max-width:575px) {
     .bt{
@@ -413,6 +461,9 @@
     }
     .ptc3::before{
         display: none;
+    }
+    .ptm2{
+        padding: 0px 0px 0px 0px;
     }
     .ptlm{
         width: 90%;
@@ -433,10 +484,10 @@
         display: none;
     }
     .ptc3{
-        margin-top: -30px;
+        margin-top: -15px;
         height: auto;
     }
-    .chart-quan{
-        max-width: 320px;
+    .chartquan{
+        display: none;
     }
 }
